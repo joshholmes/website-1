@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Register</title>
+	<title><?php echo $title; ?></title>
 </head>
 <body>
 

@@ -32,7 +32,8 @@ class Game extends CI_Controller {
 	
 	public function register()
 	{
-		$this->load->view('register');
+		$data['title'] = 'Register';
+		$this->load->view('register', $data);
 	}
 }
 
