@@ -19,7 +19,20 @@ class Game extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('game');
+		if(($this->session->userdata('user_name') != ""))
+		{
+			$this->register();
+		}
+		else
+		{
+			$data['title'] = 'Game';
+			$this->load->view('game', $data);
+		}
+	}
+	
+	public function register()
+	{
+		$this->load->view('register');		
 	}
 }
 
