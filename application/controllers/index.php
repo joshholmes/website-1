@@ -17,6 +17,7 @@ class Index extends CI_Controller {
 		else
 		{
 			$data['title'] = 'Registration';
+			$data['user'] = $this->usermodel->get_user(0);
 			$this->load->view('header', $data);
 			$this->load->view('registration', $data);
 			$this->load->view('footer', $data);
@@ -49,6 +50,7 @@ class Index extends CI_Controller {
 	
 	public function thank()
 	{
+		$data['title'] = 'Thank you!';
 		$this->load->view('header', $data);
 		$this->load->view('thank', $data);
 		$this->load->view('footer', $data);

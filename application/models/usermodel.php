@@ -28,6 +28,14 @@ class Usermodel extends CI_Model {
 		return $data;
 	}
 	
+	function get_user($id)
+	{
+		$this->db->where('id', $id);
+		
+		$query = $this->db->get('users');
+		return $query;
+	}
+	
 	function login($email, $pass)
 	{
 		$success = false;
