@@ -23,7 +23,7 @@ class Usermodel extends CI_Model {
 			'email' => $this->input->post('email'),
 			'password' => $hashed_pass
 		);
-		//$query = $this->db->insert('users', $data);
+		$query = $this->db->insert('users', $data);
 		
 		return $data;
 	}
