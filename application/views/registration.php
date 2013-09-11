@@ -5,7 +5,7 @@
   <label for="email">Email:</label>
   <input type="text" id="email" name="email" value="" />
   <label for="password">Password:</label>
-  <input type="password" id="pass" name="pass" value="" />
+  <input type="password" id="password" name="password" value="" />
   <input type="submit" class="" value="Sign in" />
  <?php echo form_close(); ?>
 </div><!--<div class="signin_form">-->
