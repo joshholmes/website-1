@@ -16,7 +16,14 @@ class Home extends CI_Controller {
 		}
 		else
 		{
+			$pass = '123456';
+			$encrypted_pass = $this->encrypt->encode($pass);
+		
+			// Hash the encrypted password using sha384 - returns 64 characters
+			$hashed_pass = hash("sha384", $encrypted_pass);
+		
 			$data['title'] = 'Registration';
+			$data['test'] = $hashed_pass;
 			$this->load->view('header', $data);
 			$this->load->view('registration', $data);
 			$this->load->view('footer', $data);

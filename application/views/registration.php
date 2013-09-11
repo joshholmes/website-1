@@ -37,3 +37,4 @@
  <?php echo form_close(); ?>
 </div>
 </div>
+<p>DEBUG: <?php echo $test; ?></p>
