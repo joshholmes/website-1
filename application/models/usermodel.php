@@ -12,11 +12,8 @@ class Usermodel extends CI_Model {
 	{
 		$pass = $this->input->post('password');
 		
-		// Encrypt the password using CI's encrypt class
-		$encrypted_pass = $this->encrypt->encode($pass);
-		
 		// Hash the encrypted password using sha384 - returns 64 characters
-		$hashed_pass = hash("sha384", $encrypted_pass);
+		$hashed_pass = hash("sha384", $pass);
 		
 		$data = array(
 			'username' => $this->input->post('username'),

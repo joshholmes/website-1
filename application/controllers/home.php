@@ -16,11 +16,9 @@ class Home extends CI_Controller {
 		}
 		else
 		{
-			$pass = '123456';
-			$encrypted_pass = $this->encrypt->encode($pass);
-		
+			$pass = '123456';		
 			// Hash the encrypted password using sha384 - returns 64 characters
-			$hashed_pass = hash("sha384", $encrypted_pass);
+			$hashed_pass = hash("sha384", $pass);
 		
 			$data['title'] = 'Registration';
 			$data['test'] = $hashed_pass;
@@ -43,14 +41,11 @@ class Home extends CI_Controller {
 	{
 		$email = $this->input->post('email');
 		$pass = $this->input->post('password');
-		
-		// Encrypt the password using CI's encrypt class
-		$encrypted_pass = $this->encrypt->encode($pass);
-		
+				
 		// Hash the encrypted password using sha384 - returns 64 characters
-		$hashed_pass = hash("sha384", $encrypted_pass);
+		$hashed_pass = hash("sha384", $pass);
 		
-		$result = $this->usermodel->login($email, $pass);
+		$result = $this->usermodel->login($email, $hashed_pass);
 		if($result) $this->welcome();
 		else $this->index();
 	}
