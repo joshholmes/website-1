@@ -5,7 +5,7 @@ class Game extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('playermodel');
+		$this->load->model('usermodel');
 	}
 	
 	public function index()
@@ -25,31 +25,6 @@ class Game extends CI_Controller {
 	{
 		$data['title'] = 'Game';
 		$this->load->view('game', $data);
-	}
-	
-	public function register()
-	{
-	}
-	
-	public function login()
-	{
-		$email = $this->input->post('email');
-		$pass = $this->input->post('password');
-		
-		// Encrypt the password using CI's encrypt class
-		$encrypted_pass = $this->encrypt->encode($pass);
-		
-		// Hash the encrypted password using sha384 - returns 64 characters
-		$hashed_pass = hash("sha384", $encrypted_pass);
-		
-		$result = $this->playermodel->login($email, $pass);
-		if($result) $this->welcome();
-		else $this->index();
-	}
-	
-	public function thank()
-	{
-		$this->load-view('thank');
 	}
 }
 
