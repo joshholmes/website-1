@@ -16,11 +16,19 @@
  <?php echo validation_errors('<p class="error">'); ?>
  <?php echo form_open("home/registration"); ?>
   <p>
-  <label for="user_name">User Name:</label>
+  <label for="firstname">First Name:</label>
+  <input type="text" id="firstname" name="firstname" value="<?php echo set_value('firstname'); ?>" />
+  </p>
+  <p>
+  <label for="lastname">Last Name:</label>
+  <input type="text" id="lastname" name="lastname" value="<?php echo set_value('lastname'); ?>" />
+  </p>
+  <p>
+  <label for="username">Username:</label>
   <input type="text" id="username" name="username" value="<?php echo set_value('username'); ?>" />
   </p>
   <p>
-  <label for="email_address">Your Email:</label>
+  <label for="email">Email:</label>
   <input type="text" id="email" name="email" value="<?php echo set_value('email'); ?>" />
   </p>
   <p>

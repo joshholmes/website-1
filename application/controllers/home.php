@@ -16,12 +16,7 @@ class Home extends CI_Controller {
 		}
 		else
 		{
-			$pass = $this->input->post('password');		
-			// Hash the encrypted password using sha384 - returns 64 characters
-			$hashed_pass = hash("sha384", $pass);
-		
 			$data['title'] = 'Registration';
-			$data['test'] = $hashed_pass;
 			$this->load->view('header', $data);
 			$this->load->view('registration', $data);
 			$this->load->view('footer', $data);
@@ -31,7 +26,6 @@ class Home extends CI_Controller {
 	public function welcome()
 	{
 		$data['title'] = 'Index';
-		$data['user'] = $this->usermodel->get_user(0);
 		$this->load->view('header', $data);
 		$this->load->view('home', $data);
 		$this->load->view('footer', $data);
@@ -42,10 +36,7 @@ class Home extends CI_Controller {
 		$email = $this->input->post('email');
 		$pass = $this->input->post('password');
 				
-		// Hash the encrypted password using sha384 - returns 64 characters
-		$hashed_pass = hash("sha384", $pass);
-		
-		$result = $this->usermodel->login($email, $hashed_pass);
+		$result = $this->usermodel->login($email, $pass);
 		if($result) $this->welcome();
 		else $this->index();
 	}
