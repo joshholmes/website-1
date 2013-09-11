@@ -16,7 +16,7 @@ class Home extends CI_Controller {
 		}
 		else
 		{
-			$pass = '123456';		
+			$pass = $this->input->post('password');		
 			// Hash the encrypted password using sha384 - returns 64 characters
 			$hashed_pass = hash("sha384", $pass);
 		
