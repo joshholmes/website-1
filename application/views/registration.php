@@ -60,7 +60,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#username").keyup(function() {
-			if("#username").val().length >= 4)
+			if($("#username").val().length >= 4)
 			{
 				$.ajax({
 					type: "post",
