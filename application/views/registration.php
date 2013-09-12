@@ -67,7 +67,7 @@
 					url: "<?php echo base_url('home/validate_user'); ?>",
 					data: { username: $("#username").val()},
 					success: function(msg) {
-						if(msg == "true")
+						if(msg)
 						{
 							$("#un_validation").css({"background-image": "url('<?php echo base_url('static/images/check_icon.png'); ?>')"});
 						}
