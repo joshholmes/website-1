@@ -75,6 +75,8 @@ class Home extends CI_Controller {
 	{
 		$userame = $this->input->post('username');
 		$result = $this->usermodel->check_user_exists($username);
+		
+		echo $result;
 	}
 	
 	public function logout()
