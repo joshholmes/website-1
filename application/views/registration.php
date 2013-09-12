@@ -65,7 +65,7 @@
 				$.ajax({
 					type: "post",
 					url: "<?php echo base_url('home/validate_user'); ?>",
-					data: "usnermae=" + $("#username").val(),
+					data: "username=" + $("#username").val(),
 					success: function(msg) {
 						if(msg == "true")
 						{
