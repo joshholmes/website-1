@@ -60,7 +60,28 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#username").keyup(function() {
-			
+			if("#username").val().length >= 4)
+			{
+				$.ajax({
+					type: "post",
+					url: "<?php echo base_url('home/validate_user'); ?>",
+					data: "usnermae=" + $("#username").val(),
+					success: function(msg) {
+						if(msg == "true");
+						{
+							$("#fn_validation").css({"background-image": "url('<?php echo base_url('static/images/check_icon.png'); ?>')"});
+						}
+						else
+						{
+							$("#fn_validation").css({"background-image": "url('<?php echo base_url('static/images/x_icon.png'); ?>')"});
+						}
+					}
+				});
+			}
+			else
+			{
+				$("#fn_validation").css({"background-image": "none"});
+			}
 		});
 	})	;
 </script>
