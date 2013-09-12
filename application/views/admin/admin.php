@@ -1,5 +1,4 @@
 <div class="content">
-  <h2>Welcome Back, <?php echo $this->session->userdata('username'); ?>!</h2>
-  <p>This section represents the area that only logged in members can access.</p>
+  <p>This section represents the area that only logged in administrators can access.</p>
   <h4><?php echo anchor('home/logout', 'Logout'); ?></h4>
 </div>
