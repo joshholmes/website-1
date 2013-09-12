@@ -80,7 +80,7 @@
 			}
 			else
 			{
-				$("#un_validation").css({"background-image": "none"});
+				$("#un_validation").css({"background-image": "url('<?php echo base_url('static/images/x_icon.png'); ?>')"});
 			}
 		});
 	})	;

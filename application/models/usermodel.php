@@ -35,7 +35,9 @@ class Usermodel extends CI_Model {
 		$this->db->where('username', $username);
 		
 		$query = $this->db->get('users');
-		return ($query->num_rows() > 0) ? true : false;
+
+		// If the user exists return false, otherwise true
+		return ($query->num_rows() > 0) ? false : true;
 	}
 	
 	function check_email_exists($email)
@@ -43,7 +45,9 @@ class Usermodel extends CI_Model {
 		$this->db->where('email', $email);
 		
 		$query = $this->db->get('users');
-		return ($query->num_rows() > 0) ? true : false;		
+		
+		// If the email exists return false, otherwise true
+		return ($query->num_rows() > 0) ? false : true;		
 	}
 
 	function login($email, $pass)
