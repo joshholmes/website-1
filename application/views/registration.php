@@ -69,18 +69,18 @@
 					success: function(msg) {
 						if(msg)
 						{
-							$("#un_validation").css({"background-image": "url('<?php echo base_url('static/images/check_icon.png'); ?>')"});
+							$("#un_validation").css({"background-image": "url('<?php echo base_url('static/images/check_icon.png'); ?>')"}).html("<br/>The username is valid!");
 						}
 						else
 						{
-							$("#un_validation").css({"background-image": "url('<?php echo base_url('static/images/x_icon.png'); ?>')"});
+							$("#un_validation").css({"background-image": "url('<?php echo base_url('static/images/x_icon.png'); ?>')"}).html("<br/>The username is invalid or already exists!");
 						}
 					}
 				});
 			}
 			else
 			{
-				$("#un_validation").css({"background-image": "url('<?php echo base_url('static/images/x_icon.png'); ?>')"});
+				$("#un_validation").css({"background-image": "url('<?php echo base_url('static/images/x_icon.png'); ?>')"}).html("<br/>The username must be at least 4 characters long!");
 			}
 		});
 	})	;
