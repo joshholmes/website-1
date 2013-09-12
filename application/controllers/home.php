@@ -73,7 +73,7 @@ class Home extends CI_Controller {
 
 	public function validate_user()
 	{
-		$userame = $this->input->post('username');
+		$username = $this->input->post('username');
 		$result = $this->usermodel->check_user_exists($username);
 		
 		echo $result;
