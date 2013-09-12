@@ -78,6 +78,14 @@ class Home extends CI_Controller {
 		
 		echo $result;
 	}
+
+	public function validate_email()
+	{
+		$username = $this->input->post('email');
+		$result = $this->usermodel->check_email_exists($email);
+		
+		echo $result;
+	}
 	
 	public function logout()
 	{

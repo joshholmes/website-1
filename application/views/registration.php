@@ -83,5 +83,31 @@
 				$("#un_validation").css({"background-image": "url('<?php echo base_url('static/images/x_icon.png'); ?>')"});
 			}
 		});
-	})	;
+		
+		$("#email").keyup(function() {
+			if($("#email").val().length >= 4)
+			{
+				$.ajax({
+					type: "post",
+					url: "<?php echo base_url('home/validate_email'); ?>",
+					data: { username: $("#email").val()},
+					success: function(msg) {
+						if(msg)
+						{
+							$("#e_validation").css({"background-image": "url('<?php echo base_url('static/images/check_icon.png'); ?>')"});
+						}
+						else
+						{
+							$("#e_validation").css({"background-image": "url('<?php echo base_url('static/images/x_icon.png'); ?>')"});
+						}
+					}
+				});
+			}
+			else
+			{
+				$("#e_validation").css({"background-image": "url('<?php echo base_url('static/images/x_icon.png'); ?>')"});
+			}
+		});
+
+	});
 </script>
