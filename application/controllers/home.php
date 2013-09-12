@@ -70,6 +70,12 @@ class Home extends CI_Controller {
 			$this->thank();
 		}
 	}
+
+	public function validate_user()
+	{
+		$userame = $this->input->post('username');
+		$result = $this->usermodel->check_user_exists($username);
+	}
 	
 	public function logout()
 	{

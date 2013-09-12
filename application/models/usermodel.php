@@ -30,12 +30,20 @@ class Usermodel extends CI_Model {
 		return $data;
 	}
 	
-	function get_user($id)
+	function check_user_exists($username)
 	{
-		$this->db->where('id', $id);
+		$this->db->where('username', $username);
 		
 		$query = $this->db->get('users');
-		return $query;
+		return ($query->num_rows() > 0) ? true : false;
+	}
+	
+	function check_email_exists($email)
+	{
+		$this->db->where('email', $email);
+		
+		$query = $this->db->get('users');
+		return ($query->num_rows() > 0) ? true : false;		
 	}
 
 	function login($email, $pass)
