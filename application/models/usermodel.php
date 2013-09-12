@@ -11,7 +11,7 @@ class Usermodel extends CI_Model {
 	function create_user()
 	{
 		// We'll encrypt their username to use it as a salt
-		$salt = $this->encrypt->encode($this->input->post('username'));
+		$salt = hash("sha384", $this->encrypt->encode($this->input->post('username')));
 		$pass = $this->input->post('password');
 		$salty_pass = $salt . $pass;
 		
