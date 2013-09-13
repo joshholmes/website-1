@@ -24,7 +24,8 @@ class Usermodel extends CI_Model {
 			'username' => $this->input->post('username'),
 			'salt' => $salt,
 			'password' => $hashed_pass,
-			'email' => $this->input->post('email')
+			'email' => $this->input->post('email'),
+			'isadmin' => 0
 		);
 		$query = $this->db->insert('users', $data);
 		return $data;
@@ -48,6 +49,19 @@ class Usermodel extends CI_Model {
 		
 		// If the email exists return false, otherwise true
 		return ($query->num_rows() > 0) ? false : true;		
+	}
+	
+	function check_admin($username)
+	{
+		$this->db->where('username', $username);
+		
+		$query = $this->db->get('users');
+		
+		foreach ($query->result() as $row)
+		{
+			$is_admin = $row->isadmin;
+		}
+		return $is_admin;
 	}
 
 	function login($email, $pass)
