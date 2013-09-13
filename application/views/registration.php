@@ -3,9 +3,9 @@
 		<div class="signin_form">
 			<?php echo form_open("home/login"); ?>
 			<label for="email">Email:</label>
-			<input type="text" id="signin_email" name="sign_email" value="" />
+			<input type="text" id="signin_email" name="signin_email" value="" />
 			<label for="password">Password:</label>
-			<input type="password" id="signin_password" name="sign_password" value="" />
+			<input type="password" id="signin_password" name="signin_password" value="" />
 			<input type="submit" class="" value="Sign in" />
 			<?php echo form_close(); ?>
 		</div>
