@@ -10,7 +10,7 @@ class Admin extends CI_Controller {
 	
 	public function index()
 	{
-		if($this->usermodel->check_admin($this->session->user_data('username')))
+		if($this->usermodel->check_admin($this->session->userdata('username')))
 		{
 			$data['admin'] = true;
 			$this->load->view('header', $data);
