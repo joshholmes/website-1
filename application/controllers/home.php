@@ -33,8 +33,8 @@ class Home extends CI_Controller {
 	
 	public function login()
 	{
-		$email = $this->input->post('email');
-		$pass = $this->input->post('password');
+		$email = $this->input->post('signin_email');
+		$pass = $this->input->post('signin_password');
 				
 		$result = $this->usermodel->login($email, $pass);
 		if($result) $this->welcome();
