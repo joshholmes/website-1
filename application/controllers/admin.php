@@ -12,13 +12,13 @@ class Admin extends CI_Controller {
 	{
 		if($this->usermodel->check_admin($this->session->userdata('username')))
 		{
-			$data['admin'] = true;
+			$data['admin_header'] = true;
 			$this->load->view('header', $data);
 			$this->load->view('admin/admin', $data);
 			$this->load->view('footer', $data);			
 		} else
 		{
-			$data['admin'] = false;
+			$data['admin_header'] = false;
 			$this->load->view('header', $data);
 			$this->load->view('home', $data);
 			$this->load->view('footer', $data);

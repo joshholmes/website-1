@@ -1,4 +1,4 @@
-<?php if($admin) { ?>
+<?php if($admin_header) { ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

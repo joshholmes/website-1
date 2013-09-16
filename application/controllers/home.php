@@ -17,7 +17,7 @@ class Home extends CI_Controller {
 		else
 		{
 			$data['title'] = 'Registration';
-			$data['admin'] = false;
+			$data['admin_header'] = false;
 			$this->load->view('header', $data);
 			$this->load->view('registration', $data);
 			$this->load->view('footer', $data);
@@ -27,7 +27,7 @@ class Home extends CI_Controller {
 	public function welcome()
 	{
 		$data['title'] = 'Index';
-		$data['admin'] = false;
+		$data['admin_header'] = false;
 		$this->load->view('header', $data);
 		$this->load->view('home', $data);
 		$this->load->view('footer', $data);
@@ -46,7 +46,7 @@ class Home extends CI_Controller {
 	public function thank()
 	{
 		$data['title'] = 'Thank you!';
-		$data['admin'] = false;
+		$data['admin_header'] = false;
 		$this->load->view('header', $data);
 		$this->load->view('thank', $data);
 		$this->load->view('footer', $data);
