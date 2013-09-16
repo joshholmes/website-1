@@ -1,5 +1,4 @@
-<script src="<?php echo base_url('static/js/game/game.js'); ?>"></script>
-<div class="content" onload="init();">
+<div class="content">
   <p>Procedural Generation</p>
   <canvas id="game" width="800" height="600">
   	Your browser SUCKS. Get with the times man.

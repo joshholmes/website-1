@@ -13,7 +13,7 @@ class Game extends CI_Controller {
 		if($this->usermodel->check_admin($this->session->userdata('username')))
 		{
 			$data['admin_header'] = false;
-			$this->load->view('header', $data);
+			$this->load->view('game/game_header', $data);
 			$this->load->view('game/game', $data);
 			$this->load->view('footer', $data);			
 		} else
