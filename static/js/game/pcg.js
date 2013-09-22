@@ -68,7 +68,7 @@ function place_rooms() {
 function h_corridor(x1, x2, y) {
 	for(var x = Math.min(x1, x2); x < (Math.max(x1, x2) + 1); x++)
 	{
-		map[x][y].
+		
 	}
 }
 
