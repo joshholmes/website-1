@@ -19,3 +19,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+CREATE TABLE IF NOT EXISTS `facebook_users` (
+  `user_id` int(11) NOT NULL,
+  `facebook_id` int(11) NOT NULL,
+  UNIQUE KEY `user_id` (`user_id`,`facebook_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
