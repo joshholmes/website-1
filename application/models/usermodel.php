@@ -8,27 +8,41 @@ class Usermodel extends CI_Model {
 		parent::__construct();
 	}
 	
-	function create_user()
+	function create_user ($data)
 	{
 		// We'll encrypt their username to use it as a salt
-		$salt = hash("sha384", $this->encrypt->encode($this->input->post('username')));
-		$pass = $this->input->post('password');
+		$salt = hash("sha384", $this->encrypt->encode( $data["username"] ));
+		$pass = $data["password"];
 		$salty_pass = $salt . $pass;
 		
 		// Hash the salty password using sha384 - returns 96 characters
 		$hashed_pass = hash("sha384", $salty_pass);
 		
-		$data = array(
-			'firstname' => $this->input->post('firstname'),
-			'lastname' => $this->input->post('lastname'),
-			'username' => $this->input->post('username'),
-			'salt' => $salt,
-			'password' => $hashed_pass,
-			'email' => $this->input->post('email'),
-			'isadmin' => 0
-		);
+		$data["password"] = $hashed_pass;
+		$data["salt"] = $salt;
+
+		$fb_user = $data['fb_user'];
+		unset($data['fb_user']);
+		
 		$query = $this->db->insert('users', $data);
-		return $data;
+		
+		if (!empty($fb_user))
+		{
+			$user_id = $this->db->insert_id();
+			$this->db->insert("facebook_users", array("user_id" => $user_id, "facebook_id" => $fb_user));
+		}
+	}
+	
+	function addFacebookUser ($fb_user)
+	{
+		$this->db->where('email', $fb_user["email"]);
+		$query = $this->db->get('users');
+		
+		if ($query->num_rows() > 0)
+		{
+			$user_id = $query->row()->id;
+			$this->db->insert("facebook_users", array("user_id" => $user_id, "facebook_id" => $fb_user["id"]));
+		}
 	}
 	
 	function check_user_exists($username)
@@ -37,8 +51,7 @@ class Usermodel extends CI_Model {
 		
 		$query = $this->db->get('users');
 
-		// If the user exists return false, otherwise true
-		return ($query->num_rows() > 0) ? false : true;
+		return ($query->num_rows() > 0) ? true : false;
 	}
 	
 	function check_email_exists($email)
@@ -47,8 +60,7 @@ class Usermodel extends CI_Model {
 		
 		$query = $this->db->get('users');
 		
-		// If the email exists return false, otherwise true
-		return ($query->num_rows() > 0) ? false : true;		
+		return ($query->num_rows() > 0) ? true : false;		
 	}
 	
 	function check_admin($username)
@@ -62,6 +74,41 @@ class Usermodel extends CI_Model {
 			$is_admin = $row->isadmin;
 		}
 		return $is_admin;
+	}
+
+	function facebookLogin ($fb_user)
+	{
+		$success = false;
+		
+		$this->db->where('facebook_id', $fb_user['id']);
+		$query = $this->db->get('facebook_users');
+		
+		if($query->num_rows() > 0)
+		{
+			$this->db->where("id", $query->row()->user_id);
+			$userQuery = $this->db->get('users');
+			
+			if($userQuery->num_rows() > 0)
+			{
+				foreach($userQuery->result() as $rows)
+				{
+					// Let's store the information in the session
+					$newdata = array(
+						'user_id' => $rows->id,
+						'username' => $rows->username,
+						'firstname' => $rows->firstname,
+						'lastname' => $rows->lastname,
+						'email' => $rows->email,
+						'logged_in' => true
+					);
+				}
+				$this->session->set_userdata($newdata);
+				$success = true;
+			}
+			
+		}
+		
+		return $success;
 	}
 
 	function login($email, $pass)
