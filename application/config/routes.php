@@ -38,8 +38,28 @@
 |
 */
 
+
+/*
+ * Load controllers for setting up manual controller routes to allow for dynamic custom page routes
+ * */
+$controllers = array();
+
+foreach (scandir( APPPATH . "controllers" ) as $file)
+{
+	$fileParts = explode(".", $file);
+	if ($fileParts[1] === "php")
+		array_push($controllers, $fileParts[0]);
+}
+
 $route['default_controller'] = "home";
 $route['404_override'] = '';
+
+// add controllers to routes
+foreach ($controllers as $controller)
+{
+	$route[$controller . '/(:any)'] = $controller . '/$1';
+}
+
 $route[':any'] = "page";
 
 

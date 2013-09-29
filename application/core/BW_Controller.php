@@ -3,9 +3,11 @@
 class BW_Controller extends CI_Controller
 {
 
-	public function __construct()
+	public function __construct($adminOnly = false)
 	{
-		parent::__construct();	
+		parent::__construct();
+		if ($adminOnly && !$this->session->userdata('isAdmin'))
+			$this->showAdminError();
 	}
 
 	protected function loadPage ($pageName, $data)
@@ -18,6 +20,11 @@ class BW_Controller extends CI_Controller
 	protected function isLoggedIn ()
 	{
 		return $this->session->userdata('username') !== FALSE;
+	}
+
+	protected function showAdminError ()
+	{
+		show_error("Only admins can access this page." , 403);		
 	}
 
 }

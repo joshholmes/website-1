@@ -15,7 +15,12 @@ class Page extends BW_Controller
 		$page = $this->pagemodel->getPage($slug);
 
 		if ($page)
-			$this->loadPage("genericPage", $page);
+		{
+			if ($page["adminOnly"] && !$this->session->userdata('isAdmin'))
+				$this->showAdminError();
+			else
+				$this->loadPage("genericPage", $page);
+		}
 		else
 			show_404();
 	}

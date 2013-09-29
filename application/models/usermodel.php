@@ -100,6 +100,7 @@ class Usermodel extends CI_Model
 						'firstname' => $rows->firstname,
 						'lastname' => $rows->lastname,
 						'email' => $rows->email,
+						'isAdmin' => $rows->isadmin,
 						'logged_in' => true
 					);
 				}
@@ -155,6 +156,7 @@ class Usermodel extends CI_Model
 					'firstname' => $rows->firstname,
 					'lastname' => $rows->lastname,
 					'email' => $rows->email,
+					'isAdmin' => $rows->isadmin,
 					'logged_in' => true
 				);
 			}
