@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Usermodel extends CI_Model {
+class Usermodel extends CI_Model
+{
 
 	function __construct()
 	{
@@ -10,7 +11,7 @@ class Usermodel extends CI_Model {
 	
 	function create_user ($data)
 	{
-		// We'll encrypt their username to use it as a salt
+		// We'll hash3 their username to use it as a salt
 		$salt = hash("sha384", $this->encrypt->encode( $data["username"] ));
 		$pass = $data["password"];
 		$salty_pass = $salt . $pass;
