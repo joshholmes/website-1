@@ -166,4 +166,10 @@ class Usermodel extends CI_Model
 
 		return $success;
 	}
+
+	public function getUser ($id)
+	{
+		$this->db->where("id", $id);
+		return $this->db->get("users")->row();
+	}
 }

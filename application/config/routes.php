@@ -58,6 +58,7 @@ $route['404_override'] = '';
 foreach ($controllers as $controller)
 {
 	$route[$controller . '/(:any)'] = $controller . '/$1';
+	$route[$controller] = $controller ;
 }
 
 $route[':any'] = "page";

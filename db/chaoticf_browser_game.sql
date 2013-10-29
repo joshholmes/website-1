@@ -37,3 +37,25 @@ CREATE TABLE IF NOT EXISTS `pages` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+CREATE TABLE IF NOT EXISTS `blog_posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `is_published` tinyint(1) NOT NULL,
+  `slug` varchar(128) NOT NULL,
+  `author` int(11) NOT NULL,
+  `category` int(11) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `content` text NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `date_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `slug` (`slug`),
+  KEY `author` (`author`,`category`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+CREATE TABLE IF NOT EXISTS `blog_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(16) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
